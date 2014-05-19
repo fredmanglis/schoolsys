@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<!-- link rel="import" type="text/html" href="./base_header.html" / -->
+		<title>Sapient Systems SchoolSys</title>
+		<link rel="stylesheet" type="text/css" href="../style/dropdown.css" />
+		<link rel="stylesheet" type="text/css" href="../style/main.css" />
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+		<div class="body">
+			<div class="dialog">
+				<form action="save_subject_success.html" method="POST">
+					<fieldset class="info">
+						<div class="row">
+							<label>code</label>
+							<input type="text" name="code" placeholder="KNEC subject code" />
+						</div>
+						<div class="row">
+							<label>name</label>
+							<input type="text" name="name" placeholder="What is the subject called" />
+						</div>
+						<div class="row">
+							<label>description</label>
+							<textarea name="description" placeholder="any further information"></textarea>
+						</div>
+						<div class="row">
+							<label>start year</label>
+							<select name="startYear">
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>end year</label>
+							<select name="stopYear">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4" selected>4</option>
+							</select>
+						</div>
+					</fieldset>
+					<fieldset class="buttons">
+						<button type="reset">RESET</button>
+						<button type="submit" name="stage" value="2">submit</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

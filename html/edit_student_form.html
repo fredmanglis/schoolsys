@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<!-- link rel="import" type="text/html" href="./base_header.html" / -->
+		<title>Sapient Systems SchoolSys</title>
+		<link rel="stylesheet" type="text/css" href="../style/dropdown.css" />
+		<link rel="stylesheet" type="text/css" href="../style/main.css" />
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+		<div class="body">
+			<div class="dialog">
+				<form action="save_student_success.html" method="POST">
+					<fieldset class="info">
+						<legend>student details</legend>
+						<div class="row">
+							<label>school id</label>
+							<input type="text" name="schoolID" value="SCHID01" placeholder="enter students admission number" />
+						</div>
+						<div class="row">
+							<label>surname</label>
+							<input type="text" name="surname" value="Name" placeholder="enter students surname" />
+						</div>
+						<div class="row">
+							<label>other names</label>
+							<input type="text" name="otherNames" value="Student" placeholder="enter any other names" />
+						</div>
+						<div class="row">
+							<label>gender</label>
+							<select name="gender">
+								<option value="1">male</option>
+								<option value="0">female</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>stream</label>
+							<select name="gender">
+								<option value="0">east</option>
+								<option value="1">west</option>
+								<option value="2">north</option>
+								<option value="3">south</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>year of study</label>
+							<select name="yearOfStudyAtAdmission">
+								<option value="1">Form 1</option>
+								<option value="2">Form 2</option>
+								<option value="3">Form 3</option>
+								<option value="4">Form 4</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>KCPE marks</label>
+							<input type="text" name="KCPEScore" value="500" placeholder="students KCPE marks" />
+						</div>
+						<div class="row">
+							<label>date of registration/admission</label>
+							<input type="date" name="dateOfAdmission" placeholder="date on which student was registered" value="2014-05-19" />
+						</div>
+					</fieldset>
+					<fieldset class="buttons">
+						<button type="reset">reset</button>
+						<button type="submit" name="stage" value="final">submit</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

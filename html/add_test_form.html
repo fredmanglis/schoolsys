@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<!-- link rel="import" type="text/html" href="./base_header.html" / -->
+		<title>Sapient Systems SchoolSys</title>
+		<link rel="stylesheet" type="text/css" href="../style/dropdown.css" />
+		<link rel="stylesheet" type="text/css" href="../style/main.css" />
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+		<div class="body">
+			<div class="dialog">
+				<form action="save_test_success.html" method="POST">
+					<fieldset class="info">
+						<div class="row">
+							<label>startDate</label>
+							<input type="date" name="startDate" value="2014-05-09" />
+						</div>
+						<div class="row">
+							<label>type</label>
+							<select name="type">
+								<option value="1">CAT</option>
+								<option value="2">exam</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>most junior class</label>
+							<select name="startYear">
+								<option value="1" selected>form 1</option>
+								<option value="2">form 2</option>
+								<option value="3">form 3</option>
+								<option value="4">form 4</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>most senior class</label>
+							<select name="stopYear">
+								<option value="1">form 1</option>
+								<option value="2">form 2</option>
+								<option value="3">form 3</option>
+								<option value="4" selected>form 4</option>
+							</select>
+						</div>
+					</fieldset>
+					<fieldset class="buttons">
+						<button type="reset">RESET</button>
+						<button type="submit" name="stage" value="2">submit</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

@@ -7,21 +7,21 @@
 body {
 	background-color: white;
 	color: black;
-	
+
 	font-family: sans-serif;
 
 }
 
 div.body {
 	clear: both;
-	
+
 	padding: 5em;
 
 }
 
 div.header {
 	background-color: blue;
-	
+
 	min-height: 2.2em;
 
 }
@@ -33,7 +33,7 @@ table.fancy {
 
 table.fancy thead {
 	background-color: blue;
-	
+
 	border-top-left-radius: 0.3em;
 	border-top-right-radius: 0.3em;
 
@@ -41,7 +41,7 @@ table.fancy thead {
 
 table.fancy thead th {
 	color: white;
-	
+
 	text-transform: uppercase;
 
 	padding: 0.5em 1em;
@@ -71,15 +71,15 @@ table.fancy ul li {
 
 table.fancy ul li a {
 	text-decoration: none;
-	
+
 	background-color: blue;
 	color: white;
-	
+
 	text-transform: uppercase;
-	
+
 	font-size: 0.8em;
 	font-weight: bold;
-	
+
 	padding: 0.5em 1em;
 
 }
@@ -87,4 +87,5 @@ table.fancy ul li a {
 .dialog {
 	box-shadow: 0 0 0.5em #444444;
 
+	background-color: #e5e5ff;
 }
