@@ -7,9 +7,12 @@ require_once( "PHP.Classes/Employee.class.php" );
 require_once( "PHP.Classes/Student.class.php" );
 require_once( "PHP.Classes/Subject.class.php" );
 require_once( "PHP.Classes/Stream.class.php" );
+require_once( "PHP.Classes/Test.class.php" );
 
+require_once( "PHP.Templates/IndexTemplate.class.php" );
 require_once( "PHP.Templates/LoginTemplate.class.php" );
 require_once( "PHP.Templates/NavigationTemplate.class.php" );
+require_once( "PHP.Templates/AddStudentTemplate.class.php" );
 
 {	// Data
 
@@ -24,7 +27,8 @@ require_once( "PHP.Templates/NavigationTemplate.class.php" );
 }
 
 if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
-	$template = new NavigationTemplate($htmlDir."nav.html");
+	$navTemplate = new NavigationTemplate($htmlDir."nav.html");
+	$template = new IndexTemplate($htmlDir."index.html", $navTemplate);
 
 	$section = "home";
 
@@ -78,7 +82,8 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 							case "1" :
 							default : {
 								// TODO: Use add_student_form.html
-								$template = new AddStudentTemplate($htmlDir."add_student_form.html");
+								$navTemplate = new NavigationTemplate($htmlDir."nav.html");
+								$template = new AddStudentTemplate($htmlDir."add_student_form.html", $navTemplate);
 							}
 							break;
 

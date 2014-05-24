@@ -8,6 +8,7 @@ abstract class BaseTemplate {
 		$this->fileName = $fileName;
 		$this->init_dom_document();
 		$this->update_dom_document();
+		$this->remove_removables();
 	}
 
 	public function get_html_output() {
@@ -30,7 +31,16 @@ abstract class BaseTemplate {
 		$this->domDocument->loadHTML(file_get_contents($this->fileName));
 	}
 
-	private function check_not_null($val, $msg) {
+	private function remove_removables() {
+		$doc = $this->get_dom_document();
+		$finder = new DOMXpath($doc);
+		$removables = $finder->query("//*[contains(concat(' ',normalize-space(@class),' '), ' removable ')]");
+		foreach($removables as $removable) {
+			$removable->parentNode->removeChild($removable);
+		}
+	}
+
+	protected function check_not_null($val, $msg) {
 		if(($val == null) || ($val == ''))
 			throw new Exception($msg);
 	}
