@@ -17,6 +17,8 @@ class NavigationTemplate extends BaseTemplate {
 
 		$domDocument->getElementById("add_test_link")->setAttribute("href", "?section=tests&action=add");
 		$domDocument->getElementById("list_tests_link")->setAttribute("href", "?section=tests&action=list");
+		$domDocument->getElementById("entry_bulk_link")->setAttribute("href", "?section=tests&action=entry&mode=bulk");
+		$domDocument->getElementById("entry_indiv_link")->setAttribute("href", "?section=tests&action=entry&mode=individual");
 
 		$domDocument->getElementById("username_link")->nodeValue = $_SESSION[ "user" ][ "loggedIn" ]["screenName"];
 		$domDocument->getElementById("logout_link")->setAttribute("href", "?section=logout");

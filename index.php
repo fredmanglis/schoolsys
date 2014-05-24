@@ -9,10 +9,9 @@ require_once( "PHP.Classes/Subject.class.php" );
 require_once( "PHP.Classes/Stream.class.php" );
 require_once( "PHP.Classes/Test.class.php" );
 
-require_once( "PHP.Templates/IndexTemplate.class.php" );
-require_once( "PHP.Templates/LoginTemplate.class.php" );
-require_once( "PHP.Templates/NavigationTemplate.class.php" );
-require_once( "PHP.Templates/AddStudentTemplate.class.php" );
+require_once( "PHP.Templates/ListEmptyTemplate.class.php" );
+require_once( "PHP.Templates/MissingTargetTemplate.class.php" );
+
 
 {	// Data
 
@@ -27,8 +26,8 @@ require_once( "PHP.Templates/AddStudentTemplate.class.php" );
 }
 
 if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
-	$navTemplate = new NavigationTemplate($htmlDir."nav.html");
-	$template = new IndexTemplate($htmlDir."index.html", $navTemplate);
+	require_once( "PHP.Templates/IndexTemplate.class.php" );
+	$template = new IndexTemplate($htmlDir."index.html", $htmlDir."nav.html");
 
 	$section = "home";
 
@@ -68,12 +67,12 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 								$student = new Student( "00000", $_POST[ "surname" ], $_POST[ "otherNames" ], $_POST[ "schoolID" ], $_POST[ "KCPEScore" ], $_POST[ "dateOfAdmission" ], $_POST[ "yearOfStudyAtAdmission" ], $_POST[ "gender" ] );
 
 								if( $student -> save() ) {
-									// TODO: Use save_student_success.html
-									$template = new SaveStudentTemplate($htmlDir."save_student_success.html");
+									require_once("PHP.Templates/SaveStudentTemplate.class.php");
+									$template = new SaveStudentTemplate($htmlDir."save_student_success.html", $htmlDir."nav.html", $student);
 								}
 								else {
-									// TODO: Use save_student_fail.html
-									$template = new SaveStudentTemplate($htmlDir."save_student_fail.html");
+									require_once("PHP.Templates/SaveStudentTemplate.class.php");
+									$template = new SaveStudentTemplate($htmlDir."save_student_fail.html", $htmlDir."nav.html");
 								}
 
 							}
@@ -81,9 +80,8 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 
 							case "1" :
 							default : {
-								// TODO: Use add_student_form.html
-								$navTemplate = new NavigationTemplate($htmlDir."nav.html");
-								$template = new AddStudentTemplate($htmlDir."add_student_form.html", $navTemplate);
+								require_once( "PHP.Templates/AddStudentTemplate.class.php" );
+								$template = new AddStudentTemplate($htmlDir."add_student_form.html", $htmlDir."nav.html");
 							}
 							break;
 
@@ -118,30 +116,26 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 									$student -> setSurName( $_POST[ "surname" ] );
 									$student -> setOtherNames( $_POST[ "otherNames" ] );
 									$student -> setSchoolID( $_POST[ "schoolID" ] );
-									$student -> setDateOfBirth( $_POST[ "dateOfBirth" ] );
+									//$student -> setDateOfBirth( $_POST[ "dateOfBirth" ] );
 									$student -> setDateOfAdmission( $_POST[ "dateOfAdmission" ] );
 									$student -> setGender( $_POST[ "gender" ] );
 									$student -> setYearOfStudyAtAdmission( $_POST[ "yearOfStudyAtAdmission" ] );
 
-/*
-									if( $student -> save() ) {
-*/
-										// TODO: use save_student_success.html
-										$template = new SaveStudentTemplate($htmlDir."save_student_success.html");
-/*
+									require_once("PHP.Templates/SaveStudentTemplate.class.php");
+									if( $student -> update() ) {
+										$template = new SaveStudentTemplate($htmlDir."save_student_success.html", $htmlDir."nav.html", $student);
 									}
 									else {
-										// TODO: save_student_fail.html
-										$template = new SaveStudentTemplate($htmlDir."save_student_fail.html");
+										$template = new SaveStudentTemplate($htmlDir."save_student_fail.html", null);
 									}
-*/
+
 								}
 								break;
 
 								case "1" :
 								default : {
-									// TODO: use edit_student_form.html
-									$template = new EditStudentTemplate($htmlDir."edit_student_form.html");
+									require_once("PHP.Templates/EditStudentTemplate.class.php");
+									$template = new EditStudentTemplate($htmlDir."edit_student_form.html", $htmlDir."nav.html");
 								}
 								break;
 
@@ -149,8 +143,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 
 						}
 						else {
-							// TODO: use missing_target.html
-							$template = new MissingTargetTemplate($htmlDir."missing_target.html");
+							$template = new MissingTargetTemplate($htmlDir."missing_target.html", $htmlDir."nav.html");
 						}
 
 					}
@@ -164,10 +157,11 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 
 							$student = New Student( $target );
 
+							require_once("PHP.Templates/ViewStudentTemplate.class.php");
+							$template = new ViewStudentTemplate($htmlDir."view_student.html", $htmlDir."nav.html");
 						}
 						else {
-							// TODO: use missing_target.html
-							$template = new MissingTargetTemplate($htmlDir."missing_target.html");
+							$template = new MissingTargetTemplate($htmlDir."missing_target.html", $htmlDir."nav.html");
 						}
 
 					}
@@ -179,12 +173,11 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 						$students = getStudents( "all" );
 
 						if( count( $students ) > 0 ) {
-							// TODO: use list_students.html
-							$template = new ListStudentsTemplate($htmlDir."list_students.html");
+							require_once( "PHP.Templates/ListStudentsTemplate.class.php" );
+							$template = new ListStudentsTemplate($htmlDir."list_students.html", $htmlDir."nav.html", $students);
 						}
 						else {
-							// TODO: use list_empty.html
-							$template = new ListEmptyTemplate($htmlDir."list_empty.html");
+							$template = new ListEmptyTemplate($htmlDir."list_empty.html", $htmlDir."nav.html");
 						}
 
 					}
@@ -289,7 +282,8 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 
 							case "1" : {
 								// TODO: use add_stream_form.html
-								$template = new AddStreamTemplate($htmlDir."add_stream_form.html");
+								require_once("PHP.Templates/AddStreamTemplate.class.php");
+								$template = new AddStreamTemplate($htmlDir."add_stream_form.html", $htmlDir."nav.html");
 							}
 							break;
 
@@ -364,7 +358,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 						}
 						else {
 							// TODO: use missing_target.html
-							$template = new MissingTargetTemplate($htmlDir."missing_target.html");
+							$template = new MissingTargetTemplate($htmlDir."missing_target.html", $htmlDir."nav.html");
 						}
 
 					}
@@ -375,8 +369,10 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 						$streams = getStreams();
 
 						if( count( $streams ) > 0 ) {
-							// TODO: use list_streams.html
-							$template = new ListStreamsTemplate($htmlDir."list_streams.html");
+							require_once("PHP.Templates/ListStreamsTemplate.class.php");
+							$template = new ListStreamsTemplate($htmlDir."list_streams.html", $htmlDir."nav.html");
+						} else {
+							$template = new ListEmptyTemplate($htmlDir."list_empty.html", $htmlDir."nav.html");
 						}
 
 					}
@@ -414,7 +410,8 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 							case "1" :
 							default : {
 								// TODO: use add_subject_form.html
-								$template = new AddSubjectTemplate($htmlDir."add_subject_form.html");
+								require_once( "PHP.Templates/AddSubjectTemplate.class.php" );
+								$template = new AddSubjectTemplate($htmlDir."add_subject_form.html",$htmlDir."nav.html");
 							}
 							break;
 
@@ -441,7 +438,8 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 
 					case "list" : {
 						// TODO: use list_subjects.html
-						$template = new ListSubjectsTemplate($htmlDir."list_subjects.html");
+						require_once("PHP.Templates/ListSubjectsTemplate.class.php");
+						$template = new ListSubjectsTemplate($htmlDir."list_subjects.html", $htmlDir."nav.html");
 					}
 					break;
 
@@ -531,8 +529,9 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 						switch( $stage ) {
 
 							case "1" : {
-								// TODO: use add_test_entry.html
-								$template = new AddTestEntryTemplate($htmlDir."add_test_entry.html");
+								// TODO: use add_test_form.html
+								require_once("PHP.Templates/AddTestTemplate.class.php");
+								$template = new AddTestTemplate($htmlDir."add_test_form.html", $htmlDir."nav.html");
 							}
 							break;
 
@@ -594,7 +593,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 						}
 						else {
 							// TODO: use missing_target.html
-							$template = new MissingTargetTemplate($htmlDir."missing_target.html");
+							$template = new MissingTargetTemplate($htmlDir."missing_target.html", $htmlDir."nav.html");
 						}
 
 					}
@@ -624,7 +623,8 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 									// Error : please ensure all options were selected
 
 									// TODO: use add_test_entry.html
-									$template = new AddTestEntryTemplate($htmlDir."add_test_entry.html");
+									require_once("PHP.Templates/AddTestEntryTemplate.class.php");
+									$template = new AddTestEntryTemplate($htmlDir."add_test_entry.html", $htmlDir."nav.html");
 
 								}
 
@@ -650,7 +650,8 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 
 						if( count( $tests ) > 0 ) {
 							// TODO: use list_tests.html
-							$template = new ListTestsTemplate($htmlDir."list_tests.html");
+							require_once("PHP.Templates/ListTestsTemplate.class.php");
+							$template = new ListTestsTemplate($htmlDir."list_tests.html", $htmlDir."nav.html");
 						}
 						else {
 							// TODO: use list_empty.html
@@ -785,9 +786,8 @@ AND
 
 						case "1" :
 						default : {
-
+							require_once( "PHP.Templates/LoginTemplate.class.php" );
 							$template = new LoginTemplate($htmlDir."login.html");
-
 						}
 						break;
 

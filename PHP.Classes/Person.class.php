@@ -3,40 +3,40 @@
 require_once( "Base.class.php" );
 
 Class Person extends Base {
-	
+
 	private $surName;
 	private $otherNames;
-	
+
 	function setSurName( $surName ) {
-		
+
 		$this -> surName = $surName;
-	
+
 	}
-	
+
 	function getSurName() {
-		
+
 		return $this -> surName;
-	
+
 	}
-	
+
 	function setOtherNames( $otherNames ) {
-		
+
 		$this -> otherNames = $otherNames;
-	
+
 	}
-	
+
 	function getOtherNames() {
-		
+
 		return $this -> otherNames;
-	
+
 	}
-	
+
 	function save() {
-		
+
 		GLOBAL $dbh;
-		
+
 		$returnValue = false;
-		
+
 		$query = '
 INSERT INTO `personDetails` (
 	  `uniqueID`
@@ -44,39 +44,43 @@ INSERT INTO `personDetails` (
 	, `otherNames`
 )
 VALUES (
-	  "' . mysql_escape_string( $this -> getUniqueID() ) . '"
-	, "' . mysql_escape_string( $this -> getSurName() ) . '"
-	, "' . mysql_escape_string( $this -> getOtherNames() ) . '"
+	  :uniqueID
+	, :surName
+	, :otherNames
 )';
-		
+
 		try {
-					
+
 			$dbh -> beginTransaction();
 
-				$dbh -> exec( $query );
-		   
-			$dbh -> commit();				
-			
+				$statement = $dbh -> prepare( $query );
+				$statement -> bindValue(":uniqueID", $this -> getUniqueID(), PDO::PARAM_STR);
+				$statement -> bindValue(":surName", $this -> getSurName(), PDO::PARAM_STR);
+				$statement -> bindValue(":otherNames", $this -> getOtherNames(), PDO::PARAM_STR);
+				$statement -> execute();
+
+			$dbh -> commit();
+
 			$returnValue = true;
-		   
-		} 
-		catch( PDOException $e ) {
-			
-		   print "Error!: " . $e -> getMessage() . "<br/>";			   
-		   die();
-		   
+
 		}
-		
+		catch( PDOException $e ) {
+
+		   print "Error!: " . $e -> getMessage() . "<br/>";
+		   die();
+
+		}
+
 		return $returnValue;
-	
+
 	}
-	
+
 	function load() {
-	
+
 		GLOBAL $dbh;
-		
+
 		$returnValue = false;
-		
+
 		$query = '
 SELECT
 	  `surName`
@@ -84,94 +88,98 @@ SELECT
 FROM
 	`personDetails`
 WHERE
-	`uniqueID` = "' . mysql_escape_string( $this -> getUniqueID() ) . '"
+	`uniqueID` = :uniqueID
 ';
 
-		try {			
-			
+		try {
+
 			$statement = $dbh -> prepare( $query );
+			$statement -> bindValue(":uniqueID", $this -> getUniqueID(), PDO::PARAM_STR);
 			$statement -> execute();
-		
+
 			$row = $statement -> fetch();
-			
-			$this -> setSurName( mysql_escape_string( $row[ "surName" ] ) );
-			$this -> setOtherNames( mysql_escape_string( $row[ "otherNames" ] ) );
-		
+
+			$this -> setSurName( $row[ "surName" ] );
+			$this -> setOtherNames( $row[ "otherNames" ] );
+
 			$returnValue = true;
-		   
-		} 
-		catch( PDOException $e ) {
-			
-		   print "Error!: " . $e -> getMessage() . "<br/>";			   
-		   die();
-		   
+
 		}
-		
+		catch( PDOException $e ) {
+
+		   print "Error!: " . $e -> getMessage() . "<br/>";
+		   die();
+
+		}
+
 		return $returnValue;
-			
+
 	}
-	
+
 	function update() {
-	
+
 		GLOBAL $dbh;
-		
+
 		$returnValue = false;
-		
+
 		$query = '
 UPDATE
 	`personDetails`
 SET
-	  `surName` = "' . mysql_escape_string( $this -> getSurName() ) . '"
-	, `otherNames` = "' . mysql_escape_string( $this -> getOtherNames() ) . '"
+	  `surName` = :surName
+	, `otherNames` = :otherNames
 WHERE
-	`uniqueID` = "' . $this -> getUniqueID() . '"';
+	`uniqueID` = :uniqueID';
 
 		try {
-	
+
 			$statement = $dbh -> prepare( $query );
-			$statement -> execute();				
+			$statement -> bindValue(":surName", $this -> getSurName(), PDO::PARAM_STR);
+			$statement -> bindValue(":otherNames", $this -> getOtherNames(), PDO::PARAM_STR);
+			$statement -> bindValue(":uniqueID", $this -> getUniqueID(), PDO::PARAM_STR);
+			$statement -> execute();
 
 			$returnValue = true;
-			   
-		} 
-		catch( PDOException $e ) {
-			
-		   print "Error!: " . $e -> getMessage() . "<br/>";			   
-		   die();
-		   
+
 		}
-				
+		catch( PDOException $e ) {
+
+		   print "Error!: " . $e -> getMessage() . "<br/>";
+		   die();
+
+		}
+
 		return $returnValue;
-	
+
 	}
-	
-	function __construct( $uniqueID = DEFAULT_UNIQUE_ID, 
+
+	function __construct( $uniqueID = DEFAULT_UNIQUE_ID,
 						  $surName = "",
 						  $otherNames = "" ) {
-		
+
 		parent::__construct( $uniqueID );
-		
+
 		if( $uniqueID != "00000" ) {
-			
+
 			$this -> load();
-		
+
 		}
 		else {
-			
+
 			if( $surName != "" ) {
-				
+
 				$this -> setSurName( $surName );
-			
+
 			}
-			
+
 			if( $otherNames != "" ) {
-				
+
 				$this -> setOtherNames( $otherNames );
-			
+
 			}
-		
+
 		}
-	
+
 	}
 
 }

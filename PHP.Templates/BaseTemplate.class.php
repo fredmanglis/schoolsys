@@ -1,4 +1,6 @@
 <?php
+require_once("SSDOMDocument.class.php");
+
 abstract class BaseTemplate {
 	private $fileName = null;
 	private $domDocument = null;
@@ -27,7 +29,7 @@ abstract class BaseTemplate {
 	abstract protected function update_dom_document();
 
 	private function init_dom_document() {
-		$this->domDocument = new DOMDocument();
+		$this->domDocument = new SSDOMDocument();
 		$this->domDocument->loadHTML(file_get_contents($this->fileName));
 	}
 

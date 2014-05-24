@@ -5,10 +5,9 @@ require_once("NavigationTemplate.class.php");
 abstract class BaseTemplateWithNav extends BaseTemplate {
 	private $navTemplate;
 
-	public function __construct($fileName, $navTemplate) {
-		$this->check_valid($navTemplate);
+	public function __construct($fileName, $navFile) {
 		parent::__construct($fileName);
-		$this->navTemplate = $navTemplate;
+		$this->navTemplate = new NavigationTemplate($navFile);
 		$this->add_navigation();
 	}
 
@@ -23,13 +22,6 @@ abstract class BaseTemplateWithNav extends BaseTemplate {
 		$nav = $finder2->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' header ')]")->item(0);
 		$imported = $domDocument->importNode($nav, true);
 		$body->parentNode->insertBefore($imported, $body);
-	}
-
-	protected function check_valid($navTemplate) {
-		$this->check_not_null($navTemplate, "You MUST provide a non-null object of NavigationTemplate class");
-		if(!($navTemplate instanceof NavigationTemplate)) {
-			throw new Exception("You MUST provide an object of NavigationTemplate class");
-		}
 	}
 
 }
