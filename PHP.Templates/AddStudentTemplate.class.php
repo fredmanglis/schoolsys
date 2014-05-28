@@ -8,7 +8,7 @@ class AddStudentTemplate extends BaseTemplateWithNav {
 	public function update_dom_document() {
 		$domDocument = $this->get_dom_document();
 
-		$domDocument->getElementById("add_student_form")->setAttribute("action", "?section=students&action=add");
+		$domDocument->getElementById("add_edit_student_form")->setAttribute("action", "?section=students&action=add");
 	}
 
 }

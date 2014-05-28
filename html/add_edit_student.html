@@ -11,30 +11,30 @@
 	<body>
 		<div class="body">
 			<div class="dialog">
-				<form id="edit_student_form" action="save_student_success.html" method="POST">
+				<form id="add_edit_student_form" action="save_student_success.html" method="POST">
 					<fieldset class="info">
 						<legend>student details</legend>
 						<div class="row">
-							<label>school id</label>
-							<input type="text" id="schoolID" name="schoolID" value="SCHID01" placeholder="enter students admission number" />
+							<label for="schoolID">school id</label>
+							<input type="text" id="schoolID" name="schoolID"  placeholder="enter students admission number" />
 						</div>
 						<div class="row">
-							<label>surname</label>
-							<input type="text" id="surname" name="surname" value="Name" placeholder="enter students surname" />
+							<label for="surname">surname</label>
+							<input type="text" id="surname" name="surname"  placeholder="enter students surname" required="required" />
 						</div>
 						<div class="row">
-							<label>other names</label>
-							<input type="text" id="otherNames" name="otherNames" value="Student" placeholder="enter any other names" />
+							<label for="otherNames">other names</label>
+							<input type="text" id="otherNames" name="otherNames" placeholder="enter any other names" required="required" />
 						</div>
 						<div class="row">
-							<label>gender</label>
+							<label for="gender">gender</label>
 							<select id="gender" name="gender">
 								<option value="1">male</option>
 								<option value="0">female</option>
 							</select>
 						</div>
 						<div class="row">
-							<label>stream</label>
+							<label for="stream">stream</label>
 							<select id="stream" name="stream">
 								<option value="0">east</option>
 								<option value="1">west</option>
@@ -43,7 +43,7 @@
 							</select>
 						</div>
 						<div class="row">
-							<label>year of study</label>
+							<label for="yearOfStudyAtAdmission">year of study</label>
 							<select id="yearOfStudyAtAdmission" name="yearOfStudyAtAdmission">
 								<option value="1">Form 1</option>
 								<option value="2">Form 2</option>
@@ -52,12 +52,12 @@
 							</select>
 						</div>
 						<div class="row">
-							<label>KCPE marks</label>
-							<input type="text" id="KCPEScore" name="KCPEScore" value="500" placeholder="students KCPE marks" />
+							<label for="KCPEScore">KCPE marks</label>
+							<input type="text" id="KCPEScore" name="KCPEScore" placeholder="students KCPE Marks" />
 						</div>
 						<div class="row">
-							<label>date of registration/admission</label>
-							<input type="date" id="dateOfAdmission" name="dateOfAdmission" placeholder="date on which student was registered" value="2014-05-19" />
+							<label for="dateOfAdmission">date of registration/admission</label>
+							<input type="date" id="dateOfAdmission" name="dateOfAdmission" placeholder="date on which student was registered" />
 						</div>
 					</fieldset>
 					<fieldset class="buttons">

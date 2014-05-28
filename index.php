@@ -81,7 +81,7 @@ if( isset( $_SESSION[ "user" ][ "loggedIn" ] ) ) {
 							case "1" :
 							default : {
 								require_once( "PHP.Templates/AddStudentTemplate.class.php" );
-								$template = new AddStudentTemplate($htmlDir."add_student_form.html", $htmlDir."nav.html");
+								$template = new AddStudentTemplate($htmlDir."add_edit_student.html", $htmlDir."nav.html");
 							}
 							break;
 

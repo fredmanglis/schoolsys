@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<!-- link rel="import" type="text/html" href="./base_header.html" / -->
+		<title>Sapient Systems SchoolSys</title>
+		<link rel="stylesheet" type="text/css" href="../style/dropdown.css" />
+		<link rel="stylesheet" type="text/css" href="../style/main.css" />
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+
+		<div class="header">
+			<ul id="nav_global">
+				<li>
+					<a href="#">students</a>
+					<ul>
+						<li>
+							<a id="add_student_link" href="add_student_form.html">add student</a>
+						</li>
+						<li>
+							<a id="list_students_link" href="list_students.html">list students</a>
+						</li>
+					</ul>
+				</li> <!--
+				<li>
+					<a href="#">users</a>
+					<ul>
+						<li>
+							<a id="list_users_link" href="list_users.html">list</a>
+						</li>
+						<li>
+							<a id="add_user_link" href="add_user.html">add</a>
+						</li>
+					</ul>
+				</li> -->
+				<li>
+					<a href="#">subjects</a>
+					<ul>
+						<li>
+							<a id="add_subject_link" href="add_subject_form.html">add subject</a>
+						</li>
+						<li>
+							<a id="list_subjects_link" href="list_subjects.html">list subjects</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">streams</a>
+					<ul>
+						<li>
+							<a id="add_stream_link" href="add_stream_form.html">add stream</a>
+						</li>
+						<li>
+							<a id="list_streams_link" href="list_streams.html">list stream</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">tests</a>
+					<ul>
+						<li>
+							<a id="add_test_link" href="add_test_form.html">add test</a>
+						</li>
+						<li>
+							<a id="list_tests_link" href="list_tests.html">list tests</a>
+						</li>
+						<li>
+							<a href="#">enter marks</a>
+							<ul>
+								<li>
+									<a id="entry_bulk_link" href="#">in bulk</a>
+								</li>
+								<li>
+									<a id="entry_indiv_link" href="#">per student</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a id="username_link" href="#">maryjane</a>
+					<ul>
+						<li>
+							<a id="logout_link" href="login.html">log out</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="body">
+
+			<!-- ADD/EDIT dialogs -->
+			<div class="dialog" id="add_edit_stream">
+				<form id="add_edit_stream_form" action="save_stream_success.html" method="POST">
+					<fieldset class="info">
+						<div class="row">
+							<label>name</label>
+							<input type="name" name="name" placeholder="name of stream" />
+						</div>
+						<div class="row">
+							<label>start year</label>
+							<select name="startYear">
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>end year</label>
+							<select name="stopYear">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4" selected="selected">4</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>notes</label>
+							<textarea name="description" placeholder="any other information"></textarea>
+						</div>
+					</fieldset>
+					<fieldset class="buttons">
+						<button type="reset">RESET</button>
+						<button type="submit" name="stage" value="2">submit</button>
+					</fieldset>
+				</form>
+			</div>
+
+			<div class="dialog" id="add_edit_student">
+				<form id="add_edit_student_form" action="save_student_success.html" method="POST">
+					<fieldset class="info">
+						<legend>student details</legend>
+						<div class="row">
+							<label for="schoolID">school id</label>
+							<input type="text" id="schoolID" name="schoolID"  placeholder="enter students admission number" />
+						</div>
+						<div class="row">
+							<label for="surname">surname</label>
+							<input type="text" id="surname" name="surname"  placeholder="enter students surname" required="required" />
+						</div>
+						<div class="row">
+							<label for="otherNames">other names</label>
+							<input type="text" id="otherNames" name="otherNames" placeholder="enter any other names" required="required" />
+						</div>
+						<div class="row">
+							<label for="gender">gender</label>
+							<select id="gender" name="gender">
+								<option value="1">male</option>
+								<option value="0">female</option>
+							</select>
+						</div>
+						<div class="row">
+							<label for="stream">stream</label>
+							<select id="stream" name="stream">
+								<option value="0">east</option>
+								<option value="1">west</option>
+								<option value="2">north</option>
+								<option value="3">south</option>
+							</select>
+						</div>
+						<div class="row">
+							<label for="yearOfStudyAtAdmission">year of study</label>
+							<select id="yearOfStudyAtAdmission" name="yearOfStudyAtAdmission">
+								<option value="1">Form 1</option>
+								<option value="2">Form 2</option>
+								<option value="3">Form 3</option>
+								<option value="4">Form 4</option>
+							</select>
+						</div>
+						<div class="row">
+							<label for="KCPEScore">KCPE marks</label>
+							<input type="text" id="KCPEScore" name="KCPEScore" placeholder="students KCPE Marks" />
+						</div>
+						<div class="row">
+							<label for="dateOfAdmission">date of registration/admission</label>
+							<input type="date" id="dateOfAdmission" name="dateOfAdmission" placeholder="date on which student was registered" />
+						</div>
+					</fieldset>
+					<fieldset class="buttons">
+						<button type="reset">reset</button>
+						<button type="submit" name="stage" value="final">submit</button>
+					</fieldset>
+				</form>
+			</div>
+
+			<div class="dialog" id="add_edit_subject">
+				<form id="add_edit_subject_form" action="save_subject_success.html" method="POST">
+					<fieldset class="info">
+						<input type="hidden" id="target" name="target" value="ABGYN" />
+						<div class="row">
+							<label>code</label>
+							<input type="text" name="code" placeholder="KNEC subject code" />
+						</div>
+						<div class="row">
+							<label>name</label>
+							<input type="text" name="name" placeholder="What is the subject called" />
+						</div>
+						<div class="row">
+							<label>description</label>
+							<textarea name="description" placeholder="any further information"></textarea>
+						</div>
+						<div class="row">
+							<label>start year</label>
+							<select name="startYear">
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>end year</label>
+							<select name="stopYear">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4" selected="selected">4</option>
+							</select>
+						</div>
+					</fieldset>
+					<fieldset class="buttons">
+						<button type="reset">RESET</button>
+						<button type="submit" name="stage" value="2">submit</button>
+					</fieldset>
+				</form>
+			</div>
+
+			<div class="dialog" id="add_edit_test">
+				<form id="add_edit_test_form" action="save_test_success.html" method="POST">
+					<fieldset class="info">
+						<div class="row">
+							<label>startDate</label>
+							<input type="date" name="startDate" value="2014-05-09" />
+						</div>
+						<div class="row">
+							<label>type</label>
+							<select name="type">
+								<option value="1">CAT</option>
+								<option value="2">exam</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>most junior class</label>
+							<select name="startYear">
+								<option value="1" selected>form 1</option>
+								<option value="2">form 2</option>
+								<option value="3">form 3</option>
+								<option value="4">form 4</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>most senior class</label>
+							<select name="stopYear">
+								<option value="1">form 1</option>
+								<option value="2">form 2</option>
+								<option value="3">form 3</option>
+								<option value="4" selected>form 4</option>
+							</select>
+						</div>
+					</fieldset>
+					<fieldset class="buttons">
+						<button type="reset">RESET</button>
+						<button type="submit" name="stage" value="2">submit</button>
+					</fieldset>
+				</form>
+			</div>
+
+			<div class="dialog" id="add_edit_test_bulk">
+				<form id="bulk_entry_form" action="#" method="POST">
+					<fieldset class="info">
+						<div class="row">
+							<label>year of study</label>
+							<select name="yearOfStudy">
+								<option value="1">Form 1</option>
+								<option value="2">Form 2</option>
+								<option value="3">Form 3</option>
+								<option value="4">Form 4</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>subject</label>
+							<select name="subjectCode">
+								<option value="101">English</option>
+								<option value="102">Kiswahili</option>
+							</select>
+						</div>
+						<div class="row">
+							<label>year test was sat</label>
+							<input type="text" name="yearSat" value="2014-05-09" placeholder="" />
+						</div>
+						<div class="row">
+							<label>term</label>
+							<select name="session">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+						</div>
+					</fieldset>
+					<fieldset>
+						<button type="reset">reset</button>
+						<button type="submit">submit</button>
+					</fieldset>
+				</form>
+			</div>
+
+			<!-- LIST dialogs -->
+
+			<!-- SAVE success dialogs -->
+
+			<!-- ERROR dialogs -->
+
+		</div>
+	</body>
+</html>
