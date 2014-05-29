@@ -720,15 +720,15 @@ else {
 
 							$query = '
 SELECT
-	COUNT(*)
+	COUNT(*) AS COUNT
 FROM
 	`accountDetails`
 WHERE
 	`status` = "1"
 AND
-	`screenname` = "' . ( $_POST[ "screenName" ] ) . '"
+	`screenname` = :screenName
 AND
-	`password` = MD5( "' . ( $_POST[ "password" ] ) . '" )';
+	`password` = MD5( :password )';
 
 
 							$query2 = '
@@ -740,17 +740,27 @@ FROM
 WHERE
 	`status` = "1"
 AND
-	`screenname` = "' . ( $_POST[ "screenName" ] ) . '"
+	`screenname` = :screenName
 AND
-	`password` = MD5( "' . ( $_POST[ "password" ] ) . '" )';
+	`password` = MD5( :password )';
 
 							try {
+								$statement = $dbh->prepare($query);
+								$statement->bindValue(":screenName", $_POST[ "screenName" ], PDO::PARAM_STR);
+								$statement->bindValue(":password", $_POST[ "password" ], PDO::PARAM_STR);
+								$statement->execute();
 
-								if( $result = $dbh -> query( $query ) ) {
 
-									if( $result -> fetchColumn() == 1 ) {
+								$result = $statement->fetch();
+								if( $result['COUNT'] ) {
+									if( $statement -> rowCount() == 1 ) { // NOT PORTABLE
 
-										foreach( $dbh -> query( $query2 ) as $row ) {
+										$statement2 = $dbh->prepare($query2);
+										$statement2->bindValue(":screenName", $_POST[ "screenName" ], PDO::PARAM_STR);
+										$statement2->bindValue(":password", $_POST[ "password" ], PDO::PARAM_STR);
+										$statement2->execute();
+
+										foreach( $statement2->fetchAll(PDO::FETCH_BOTH ) as $row ) {
 
 											$_SESSION[ "user" ][ "loggedIn" ] = Array(
 												  "screenName" => $row[ "screenName" ]
@@ -760,10 +770,11 @@ AND
 										}
 
 									}
-
 								}
 								else {
 									// TODO: use login_error.html
+									require_once("PHP.Templates/LoginErrorTemplate.class.php");
+									$template = new LoginErrorTemplate($htmlDir."main_template_all.html");
 								}
 
 							}
