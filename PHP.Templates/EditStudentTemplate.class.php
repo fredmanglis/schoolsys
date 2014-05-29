@@ -1,16 +1,15 @@
 <?php
-require_once("BaseTemplate.class.php");
-require_once("NavigationTemplate.class.php");
 require_once("BaseTemplateWithNav.class.php");
 
 class EditStudentTemplate extends BaseTemplateWithNav {
 
 	public function update_dom_document() {
 		$domDocument = $this->get_dom_document();
+		$domDocument->removeClass($domDocument->getElementById("add_edit_student"), "removable");
 
 		$student = new Student( $_REQUEST['target'] );
 		if($student) {
-			$domDocument->getElementById("edit_student_form")->setAttribute("action", "?section=students&action=edit&target=".$student->getUniqueID());
+			$domDocument->getElementById("add_edit_student_form")->setAttribute("action", "?section=students&action=edit&target=".$student->getUniqueID());
 			$domDocument->getElementById("schoolID")->setAttribute("value", $student->getSchoolID());
 			$domDocument->getElementById("surname")->setAttribute("value", $student->getSurName());
 			$domDocument->getElementById("otherNames")->setAttribute("value", $student->getOtherNames());

@@ -92,7 +92,7 @@
 		<div class="body">
 
 			<!-- ADD/EDIT dialogs -->
-			<div class="dialog" id="add_edit_stream">
+			<div class="dialog removable" id="add_edit_stream">
 				<form id="add_edit_stream_form" action="save_stream_success.html" method="POST">
 					<fieldset class="info">
 						<div class="row">
@@ -129,7 +129,7 @@
 				</form>
 			</div>
 
-			<div class="dialog" id="add_edit_student">
+			<div class="dialog removable" id="add_edit_student">
 				<form id="add_edit_student_form" action="save_student_success.html" method="POST">
 					<fieldset class="info">
 						<legend>student details</legend>
@@ -186,7 +186,7 @@
 				</form>
 			</div>
 
-			<div class="dialog" id="add_edit_subject">
+			<div class="dialog removable" id="add_edit_subject">
 				<form id="add_edit_subject_form" action="save_subject_success.html" method="POST">
 					<fieldset class="info">
 						<input type="hidden" id="target" name="target" value="ABGYN" />
@@ -228,7 +228,7 @@
 				</form>
 			</div>
 
-			<div class="dialog" id="add_edit_test">
+			<div class="dialog removable" id="add_edit_test">
 				<form id="add_edit_test_form" action="save_test_success.html" method="POST">
 					<fieldset class="info">
 						<div class="row">
@@ -268,7 +268,7 @@
 				</form>
 			</div>
 
-			<div class="dialog" id="add_edit_test_bulk">
+			<div class="dialog removable" id="add_edit_test_bulk">
 				<form id="bulk_entry_form" action="#" method="POST">
 					<fieldset class="info">
 						<div class="row">
@@ -307,11 +307,417 @@
 				</form>
 			</div>
 
-			<!-- LIST dialogs -->
+			<!-- LIST tables -->
+			<table id="list_employees" class="fancy sortable searchable removable">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>Kamau Francis Muriithi</td>
+						<td class="actions">
+							<ul>
+								<li>
+									<a href="view_employee.html">view</a>
+								</li>
+								<li>
+									<a href="edit_employee_form.html">edit</a>
+								</li>
+								<li>
+									<a href="delete_employee_form.html">delete</a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Odhiambo Mary Atieno</td>
+						<td class="actions">
+							<ul>
+								<li>
+									<a href="view_employee.html">view</a>
+								</li>
+								<li>
+									<a href="edit_employee_form.html">edit</a>
+								</li>
+								<li>
+									<a href="delete_employee_form.html">delete</a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Tanui Muriel Cherotich</td>
+						<td class="actions">
+							<ul>
+								<li>
+									<a href="view_employee.html">view</a>
+								</li>
+								<li>
+									<a href="edit_employee_form.html">edit</a>
+								</li>
+								<li>
+									<a href="delete_employee_form.html">delete</a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table id="list_streams" class="fancy removable">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>stream</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>Stream 1</td>
+						<td class="actions">
+							<ul>
+								<li>
+									<a href="view_stream.html">view</a>
+								</li>
+								<li>
+									<a href="edit_stream_form.html">edit</a>
+								</li>
+								<li>
+									<a href="delete_stream.html">delete</a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table id="list_students" class="fancy sortable searchable removable">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>school ID</th>
+						<th>form</th>
+						<th>name</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="student_row removable">
+						<td class="count">1</td>
+						<td class="school_id">SCHID01</td>
+						<td class="class">FORM 1</td>
+						<td class="name">Name Student</td>
+						<td class="actions">
+							<ul>
+								<li>
+									<a class="view_student" href="view_student.html">view</a>
+								</li>
+								<li>
+									<a class="edit_student" href="edit_student_form.html">edit</a>
+								</li> <!--
+								<li>
+									<a class="delete_student" href="delete_student.html">delete</a>
+								</li> -->
+							</ul>
+						</td>
+					</tr>
+					<tr class="student_row removable">
+						<td>2</td>
+						<td>SCHID02</td>
+						<td>FORM 1</td>
+						<td>Name2 Student2</td>
+						<td class="actions">
+							<ul>
+								<li>
+									<a href="view_student.html">view</a>
+								</li>
+								<li>
+									<a href="edit_student_form.html">edit</a>
+								</li> <!--
+								<li>
+									<a href="delete_student.html">delete</a>
+								</li> -->
+							</ul>
+						</td>
+					</tr>
+					<tr class="student_row removable">
+						<td>3</td>
+						<td>SCHID03</td>
+						<td>FORM 3</td>
+						<td>Name3 Student3</td>
+						<td class="actions">
+							<ul>
+								<li>
+									<a href="view_student.html">view</a>
+								</li>
+								<li>
+									<a href="edit_student_form.html">edit</a>
+								</li> <!--
+								<li>
+									<a href="delete_student.html">delete</a>
+								</li> -->
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table id="list_subjects" class="fancy removable">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>code</th>
+						<th>subject</th>
+						<th>start class</th>
+						<th>end class</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="subject_row">
+						<td class="count">1</td>
+						<td class="knec_code">KNEC01</td>
+						<td class="subject">Mathematics</td>
+						<td class="startYr">Form 1</td>
+						<td class="stopYr">Form 4</td>
+						<td>
+							<ul>
+								<li>
+									<a class="view_subject" href="view_subject.html">view</a>
+								</li>
+								<li>
+									<a class="edit_subject" href="edit_subject_form.html">edit</a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table id="list_teachers" class="fancy sortable searchable removable">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>Omollo Daniel Okech</td>
+						<td class="actions">
+							<ul>
+								<li>
+									<a href="view_teacher.html">view</a>
+								</li>
+								<li>
+									<a href="edit_teacher_form.html">edit</a>
+								</li>
+								<li>
+									<a href="delete_teacher.html">delete</a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Waithera Mary Wangui</td>
+						<td class="actions">
+							<ul>
+								<li>
+									<a href="view_teacher.html">view</a>
+								</li>
+								<li>
+									<a href="edit_teacher_form.html">edit</a>
+								</li>
+								<li>
+									<a href="delete_teacher.html">delete</a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table id="list_tests" class="fancy removable">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>type</th>
+						<th>date</th>
+						<th>most junior class</th>
+						<th>most senior class</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>Type</td>
+						<td>09 May 2014</td>
+						<td>Form 1</td>
+						<td>Form 4</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div id="list_empty" class="dialog removable">
+				<p>Sorry, but no results were returned!</p>
+			</div>
 
 			<!-- SAVE success dialogs -->
+			<div id="save_stream_success" class="dialog removable">
+				<p>stream successfully saved</p>
+			</div>
+
+			<div id="save_student_success" class="dialog removable">
+				<p>The following student : </p>
+				<table>
+					<tbody>
+						<tr>
+							<th>school ID</th>
+							<td id="schoolID_save">SCHID01</td>
+						</tr>
+						<tr>
+							<th>name</th>
+							<td id="name">Student Name</td>
+						</tr>
+						<tr>
+							<th>KCPE Marks</th>
+							<td id="marks">500</td>
+						</tr>
+						<tr>
+							<th>Admitted on</th>
+							<td id="admittedOn">19 May 2014</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>Was successfully added to the system</p>
+				<p class="removable">
+					<a href="add_student_form.html">add more</a> | <a href="list_students.html">view list</a> | <a href="nav.html">home</a>
+				</p>
+			</div>
+
+			<div id="save_subject_success" class="dialog removable">
+				<table class="fancy">
+					<tbody>
+						<tr>
+							<th>code</th>
+							<td>KNEC01</td>
+						</tr>
+						<tr>
+							<th>name</th>
+							<td>Mathematics</td>
+						</tr>
+						<tr>
+							<th>description</th>
+							<td>Removes hair from students' heads</td>
+						</tr>
+						<tr>
+							<th>most junior year</th>
+							<td>Form 1</td>
+						</tr>
+						<tr>
+							<th>most senior year</th>
+							<td>Form 4</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>Was successfully added to the system</p>
+				<p>
+					<a href="add_subject_form.html">add more</a> | <a href="list_subjects.html">view list</a> | <a href="nav.html">home</a>
+				</p>
+			</div>
+
+			<div id="save_test_success" class="dialog removable">
+				<table>
+					<tbody>
+						<tr>
+							<th>date</th>
+							<td>2014-05-09</td>
+						</tr>
+						<tr>
+							<th>type</th>
+							<td>Test Type</td>
+						</tr>
+						<tr>
+							<th>senior year</th>
+							<td>Form 4</td>
+						</tr>
+						<tr>
+							<th>junior year</th>
+							<td>Form 1</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<!-- VIEW dialogs -->
+			<div id="view_student_dialog" class="dialog removable">
+				<table>
+					<tbody>
+						<tr>
+							<th>school ID:</th>
+							<td id="schoolID_view">SCHID01</td>
+						</tr>
+						<tr>
+							<th>name:</th>
+							<td id="student_name">Student Name</td>
+						</tr>
+						<tr>
+							<th>KCPE Marks:</th>
+							<td id="marks_view">500</td>
+						</tr>
+						<tr>
+							<th>Admitted on:</th>
+							<td id="admission_date">19 May 2014</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
 			<!-- ERROR dialogs -->
+			<div id="missing_target_dialog" class="dialog removable">
+				<p>Sorry, but a "target" must be specified in order for you to perfom this action</p>
+			</div>
+
+			<div id="save_student_fail" class="dialog error removable">
+				<h1>database error</h1>
+				<p>Unable to save the record</p>
+			</div>
+
+			<!-- LOGIN dialogs -->
+			<div id="login_dialog" class="dialog removable">
+				<form id="login_form" action="nav.html" method="POST">
+					<fieldset class="info">
+						<div class="row">
+							<label>username</label>
+							<input type="text" name="screenName" placeholder="your username" required="required" />
+						</div>
+						<div class="row">
+							<label>password</label>
+							<input type="password" name="password" placeholder="your password" required="required" />
+						</div>
+					</fieldset>
+					<fieldset class="buttons">
+						<button type="reset">RESET</button>
+						<button type="submit" name="stage" value="2">LOG IN</button>
+					</fieldset>
+				</form>
+			</div>
+
+			<div id="login_error_dialog" class="message removable">
+				<h4>Log In Error : 001</h4>
+				<p>There was an Error trying to log you in :(</p>
+				<p>Please contact the site administrator if this persists</p>
+			</div>
 
 		</div>
 	</body>

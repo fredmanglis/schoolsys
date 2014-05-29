@@ -1,27 +1,33 @@
 <?php
 require_once("BaseTemplate.class.php");
-require_once("NavigationTemplate.class.php");
 
 abstract class BaseTemplateWithNav extends BaseTemplate {
 	private $navTemplate;
 
-	public function __construct($fileName, $navFile) {
+	public function __construct($fileName) {
 		parent::__construct($fileName);
-		$this->navTemplate = new NavigationTemplate($navFile);
-		$this->add_navigation();
+		$this->update_navigation();
 	}
 
-	private function add_navigation() {
-		// TODO: copy navigation links from nav file to domDocument
+	private function update_navigation() {
 		$domDocument = $this->get_dom_document();
-		$finder = new DomXPath($domDocument);
-		$body = $finder->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' body ')]")->item(0);
 
-		$navDocument = $this->navTemplate->get_dom_document();
-		$finder2 = new DomXPath($navDocument);
-		$nav = $finder2->query("//*[contains(concat(' ', normalize-space(@class), ' '), ' header ')]")->item(0);
-		$imported = $domDocument->importNode($nav, true);
-		$body->parentNode->insertBefore($imported, $body);
+		$domDocument->getElementById("add_student_link")->setAttribute("href", "?section=students&action=add");
+		$domDocument->getElementById("list_students_link")->setAttribute("href", "?section=students&action=list");
+
+		$domDocument->getElementById("add_subject_link")->setAttribute("href", "?section=subjects&action=add");
+		$domDocument->getElementById("list_subjects_link")->setAttribute("href", "?section=subjects&action=list");
+
+		$domDocument->getElementById("add_stream_link")->setAttribute("href", "?section=streams&action=add");
+		$domDocument->getElementById("list_streams_link")->setAttribute("href", "?section=streams&action=list");
+
+		$domDocument->getElementById("add_test_link")->setAttribute("href", "?section=tests&action=add");
+		$domDocument->getElementById("list_tests_link")->setAttribute("href", "?section=tests&action=list");
+		$domDocument->getElementById("entry_bulk_link")->setAttribute("href", "?section=tests&action=entry&mode=bulk");
+		$domDocument->getElementById("entry_indiv_link")->setAttribute("href", "?section=tests&action=entry&mode=individual");
+
+		$domDocument->getElementById("username_link")->nodeValue = $_SESSION[ "user" ][ "loggedIn" ]["screenName"];
+		$domDocument->getElementById("logout_link")->setAttribute("href", "?section=logout");
 	}
 
 }

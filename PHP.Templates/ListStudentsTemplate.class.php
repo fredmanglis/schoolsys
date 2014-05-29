@@ -1,18 +1,18 @@
 <?php
 require_once("BaseTemplate.class.php");
-require_once("NavigationTemplate.class.php");
 require_once("BaseTemplateWithNav.class.php");
 
 class ListStudentsTemplate extends BaseTemplateWithNav {
 	private $students;
 
-	public function __construct($filename, $navFile, $students) {
+	public function __construct($filename, $students) {
 		$this->students = $students;
-		parent::__construct($filename, $navFile);
+		parent::__construct($filename);
 	}
 
 	public function update_dom_document() {
 		$domDocument = $this->get_dom_document();
+		$domDocument->removeClass($domDocument->getElementById("list_students"), "removable");
 		$finder = new DOMXpath($domDocument);
 		$temp = $domDocument->getElementsByClass('student_row')->item(0);
 
